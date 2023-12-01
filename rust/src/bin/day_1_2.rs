@@ -21,7 +21,7 @@ fn main() {
                     nums.0 = digit as u8;
                     break;
                 } else {
-                    let letter = line.bytes().nth(0).unwrap();
+                    let letter = line.as_bytes()[0];
                     if letter.is_ascii_digit() {
                         nums.0 = letter - 48;
                         break;
@@ -37,7 +37,7 @@ fn main() {
                     let digit = digit_index + 1;
                     nums.1 = Some(digit as u8);
                 } else {
-                    let letter = line.bytes().nth(0).unwrap();
+                    let letter = line.as_bytes()[0];
                     if letter.is_ascii_digit() {
                         nums.1 = Some(letter  - 48);
                     }
@@ -46,10 +46,7 @@ fn main() {
 
             format!("{}{}", nums.0, nums.1.unwrap_or(nums.0)).parse::<u32>().unwrap()
         })
-        .fold(0_u32, |sum, next| {
-            println!("{next}");
-            sum + next
-        });
+        .sum::<u32>();
 
     print!("{answer}");
 

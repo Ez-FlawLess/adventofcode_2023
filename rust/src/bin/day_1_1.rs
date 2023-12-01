@@ -16,14 +16,14 @@ fn calc_answer() -> u32 {
 
             let mut line = line.into_iter();
 
-            while let Some(byte) = line.next() {
+            for byte in line.by_ref() {
                 if byte.is_ascii_digit() {
                     nums.0 = byte - 48;
                     break;
                 }
             }
 
-            while let Some(byte) = line.next() {
+            for byte in line {
                 if byte.is_ascii_digit() {
                     nums.1 = Some(byte - 48);
                 }
@@ -31,10 +31,7 @@ fn calc_answer() -> u32 {
 
             ((nums.0 * 10) + nums.1.unwrap_or(nums.0)) as u32
         })
-        .fold(0_u32, |sum, next| {
-            println!("{next}");
-            sum + next
-        });
+        .sum::<u32>();
 
     answer
 }
