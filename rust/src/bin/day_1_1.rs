@@ -1,13 +1,17 @@
 use std::fs;
 
 fn main() {
-    println!("{}", calc_answer());
-}
-
-fn calc_answer() -> u32 {
 
     let data = fs::read_to_string("..\\inputs\\day_1.txt")
         .expect("couldn't read file to string");
+
+    let answer = calc_answer(&data);
+    println!("{answer}");
+
+    assert_eq!(answer, 54697);
+}
+
+fn calc_answer(data: &str) -> u32 {
 
     let answer = data.lines()
         .map(|line| line.bytes())
@@ -42,6 +46,13 @@ mod tests {
 
     #[test]
     fn test_calc_answer() {
-        assert_eq!(calc_answer(), 54697);
+
+        let data = r#"1abc2
+            pqr3stu8vwx
+            a1b2c3d4e5f
+            treb7uchet"#;
+
+        assert_eq!(calc_answer(data), 142);
+
     }
 }
