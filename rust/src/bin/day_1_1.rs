@@ -1,6 +1,10 @@
 use std::fs;
 
-fn main() -> u32 {
+fn main() {
+    println!("{}", calc_answer());
+}
+
+fn calc_answer() -> u32 {
 
     let data = fs::read_to_string("..\\inputs\\day_1.txt")
         .expect("couldn't read file to string");
@@ -25,26 +29,22 @@ fn main() -> u32 {
                 }
             }
 
-            format!("{}{}", nums.0, nums.1.unwrap_or(nums.0)).parse::<u32>().unwrap()
+            ((nums.0 * 10) + nums.1.unwrap_or(nums.0)) as u32
         })
         .fold(0_u32, |sum, next| {
             println!("{next}");
             sum + next
         });
 
-    println!("{answer}");
-
-
     answer
-
 }
-
+ 
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
-    fn test_main() {
-        assert_eq!(main(), 54697);
+    fn test_calc_answer() {
+        assert_eq!(calc_answer(), 54697);
     }
 }
