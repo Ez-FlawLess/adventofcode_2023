@@ -27,9 +27,10 @@ fn calc_answer(data: &str) -> u32 {
                 }
             }
 
-            for byte in line {
+            for byte in line.rev() {
                 if byte.is_ascii_digit() {
                     nums.1 = Some(byte - 48);
+                    break;
                 }
             }
 
