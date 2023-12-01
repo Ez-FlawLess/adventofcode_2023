@@ -1,6 +1,6 @@
 use std::fs;
 
-fn main() {
+fn main() -> u32 {
 
     let data = fs::read_to_string("..\\inputs\\day_1.txt")
         .expect("couldn't read file to string");
@@ -34,4 +34,17 @@ fn main() {
 
     println!("{answer}");
 
+
+    answer
+
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_main() {
+        assert_eq!(main(), 54697);
+    }
 }
